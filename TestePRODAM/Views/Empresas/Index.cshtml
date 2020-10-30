@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TestePRODAM.Models.Empresa>
+
+@{
+    ViewData["Title"] = "Lista de empresas";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create">Adicionar Empresa</a>
+</p>
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Documento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Uf)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Documento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Uf)
+            </td>
+            <td class="text-right">
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Editar</a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Detalhes</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Excluir</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

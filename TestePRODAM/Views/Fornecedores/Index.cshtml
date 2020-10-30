@@ -1,0 +1,67 @@
+﻿@model IEnumerable<TestePRODAM.Models.Fornecedor>
+
+@{
+    ViewData["Title"] = "Lista de Fornecedores";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-controller="Fornecedores" asp-action="Index">
+  <p>
+    <input type="text" name="busca" placeholder="Nome ou Documento"/>
+    <input type="submit" value="Filtrar" />
+  </p>
+</form>
+
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Documento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoFornecedor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataCadastro)
+            </th>            
+            <th>
+                @Html.DisplayNameFor(model => model.Empresa)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Documento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoFornecedor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataCadastro)
+            </td>            
+            <td>
+                @Html.DisplayFor(modelItem => item.Empresa.Nome)
+            </td>
+            <td class="text-right">
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Editar</a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Detalhes</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Excluir</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<p>
+  <a asp-action="Create" class="btn btn-success">Novo Fornecedor</a>
+</p>
